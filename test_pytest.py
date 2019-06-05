@@ -1,7 +1,7 @@
-import MNISTClassifier
+import MNISTClassifierTrainer
 
 def test_increment():
-    assert MNISTClassifier.increment(3) == 4
+    assert MNISTClassifierTrainer.increment(3) == 4
 
 def test_decrement():
-    assert MNISTClassifier.decrement(3) == 4
+    assert MNISTClassifierTrainer.decrement(3) == 4
