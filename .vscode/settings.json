@@ -1,0 +1,10 @@
+{
+    "python.pythonPath": "/usr/local/opt/python/bin/python3.7",
+    "python.testing.pyTestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pyTestEnabled": false,
+    "python.testing.promptToConfigure": false
+}
