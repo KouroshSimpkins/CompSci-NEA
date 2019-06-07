@@ -53,4 +53,56 @@ def find_table_in_boxes(boxes, cell_threshold=10, min_colums=2):
 
     return table_cells
 
-    
+def build_lines(table_cells):
+    if table_cells is None or len(table_cells) <= 0:
+        return [], []
+
+    max_last_col_width_row = max(table_cells, key=lambda b: b[-1][2])
+    max_x = max_last_col_width_row[-1][0] + max_last_col_width_row[-1][2]
+
+    max_last_row_height_box = max(table_cells[-1], key=lambda b: b[3])
+    max_y = max_last_row_height_box[1] + max_last_row_height_box[3]
+
+    hor_lines = []
+    ver_lines = []
+
+    for box in table_cells:
+        x = box[0][0]
+        y = box[0][1]
+        hor_lines.append((x, y, max_x, y))
+
+    for box in table_cells[0]:
+        x = box[0]
+        y = box[1]
+        ver_lines.append((x, y, x, max_y))
+
+    (x, y, w, h) = table_cells[0][-1]
+    ver_lines.append((max_x, y, max_x, max_y))
+    (x, y, w, h) = table_cells[0][0]
+    hor_lines.append((x, max_y, max_x, max_y))
+
+    return hor_lines, ver_lines
+
+if __name__ == "__main__":
+    in_file = os.path.join("data", "page.jpg")
+    pre_file = os.path.join("data", "pre.jpg")
+    out_file = os.path.join("data", "out.jpg")
+
+    img = cv2.imread(os.path.join(in_file))
+
+    pre_processed = pre_process_image(img, pre_file)
+    text_boxes = find_text_boxes(pre_processed)
+    cells = find_table_in_boxes(text_boxes)
+    hor_lines, ver_lines = build_lines(cells)
+
+    vis = img.copy()
+
+    for line in hor_lines:
+        [x1, y1, x2, y2] = line
+        cv2.line(vis, (x1, y1), (x2, y2), (0, 0, 255), 1)
+
+    for line in ver_lines:
+        [x1, y1, x2, y2] = line
+        cv2.line(vis, (x1, y1), (x2, y2), (0, 0, 255), 1)
+
+    cv2.imwrite(out_file, vis)
