@@ -106,7 +106,7 @@ mnist_classifier.train(
     steps=1,
     hooks=[logging_hook])
 
-mnist_classifier.train(input_fn=train_input_fn, steps=1000)
+mnist_classifier.train(input_fn=train_input_fn, steps=100000)
 
 # Evaluating the model
 eval_input_fn = tf.estimator.inputs.numpy_input_fn(
