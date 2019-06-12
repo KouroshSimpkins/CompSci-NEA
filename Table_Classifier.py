@@ -23,8 +23,8 @@ def pre_process_image(img, save_in_file, morph_size=(8, 8)):
 
 def find_text_boxes(pre, min_text_height_limit=6, max_text_height_limit=40):
     # Searching for text spots contours
-    contours = cv2.findContours(pre, cv2.RETR_LIST, cv2.CHAIN_IN_APPROX_SAMPLE)
-    contours = contours[0] if imutils.is_cv2() else contours[1]
+    contours = cv2.findContours(pre, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    contours = contours[1] if imutils.is_cv3() else contours[0]
 
     # Getting bounding boxes for text based on size assumptions
     boxes = []
@@ -88,7 +88,7 @@ def build_lines(table_cells):
     return hor_lines, ver_lines
 
 if __name__ == "__main__":
-    in_file = os.path.join("data", "page.jpg")
+    in_file = os.path.join("data", "in.jpg")
     pre_file = os.path.join("data", "pre.jpg")
     out_file = os.path.join("data", "out.jpg")
 
