@@ -1,3 +1,5 @@
+'''
+
 import os
 import cv2
 import imutils
@@ -110,3 +112,19 @@ if __name__ == "__main__":
         cv2.line(vis, (x1, y1), (x2, y2), (0, 0, 255), 1)
 
     cv2.imwrite(out_file, vis)
+
+'''
+
+with Image(page) as page_image:
+    page_image.alpha_channel = False
+    img_buffer = np.asarray(bytearray(page_image.make_blob()), dtype=np.uint8)
+    img = cv2.imdecode(img_buffer, cv2.IMREAD_UNCHANGED)
+
+    ret, thresh = cv2.threshold(img, 127, 255, 0)
+    im2, contours, hierarchy = cv2.findContours(
+        thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    margin = []
+    for contour in contours:
+        [x, y, w, h] = cv2.boundingRect(contour)
+        if (w > thresh1 and h > thresh2):
+            margin.append([x, y, x + w, y + h])
