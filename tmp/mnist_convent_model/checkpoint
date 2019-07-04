@@ -1,6 +1,6 @@
-model_checkpoint_path: "model.ckpt-3007"
-all_model_checkpoint_paths: "model.ckpt-2004"
+model_checkpoint_path: "model.ckpt-3008"
 all_model_checkpoint_paths: "model.ckpt-2005"
 all_model_checkpoint_paths: "model.ckpt-3005"
 all_model_checkpoint_paths: "model.ckpt-3006"
 all_model_checkpoint_paths: "model.ckpt-3007"
+all_model_checkpoint_paths: "model.ckpt-3008"

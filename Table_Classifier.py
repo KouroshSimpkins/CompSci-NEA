@@ -115,6 +115,8 @@ if __name__ == "__main__":
 
 '''
 
+from PIL import Image
+
 with Image(page) as page_image:
     page_image.alpha_channel = False
     img_buffer = np.asarray(bytearray(page_image.make_blob()), dtype=np.uint8)

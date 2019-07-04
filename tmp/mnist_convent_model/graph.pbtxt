@@ -3619,7 +3619,7 @@ node {
   }
 }
 node {
-  name: "dropout/dropout/keep_prob"
+  name: "dropout/dropout/rate"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -3643,7 +3643,7 @@ node {
         dtype: DT_FLOAT
         tensor_shape {
         }
-        float_val: 0.6000000238418579
+        float_val: 0.4000000059604645
       }
     }
   }
@@ -3680,6 +3680,57 @@ node {
           }
         }
         tensor_content: "d\000\000\000\000\004\000\000"
+      }
+    }
+  }
+}
+node {
+  name: "dropout/dropout/sub/x"
+  op: "Const"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 1.0
+      }
+    }
+  }
+}
+node {
+  name: "dropout/dropout/sub"
+  op: "Sub"
+  input: "dropout/dropout/sub/x"
+  input: "dropout/dropout/rate"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
       }
     }
   }
@@ -3866,7 +3917,7 @@ node {
 node {
   name: "dropout/dropout/add"
   op: "Add"
-  input: "dropout/dropout/keep_prob"
+  input: "dropout/dropout/sub"
   input: "dropout/dropout/random_uniform"
   attr {
     key: "T"
@@ -3917,10 +3968,10 @@ node {
   }
 }
 node {
-  name: "dropout/dropout/div"
+  name: "dropout/dropout/truediv"
   op: "RealDiv"
   input: "dense/Relu"
-  input: "dropout/dropout/keep_prob"
+  input: "dropout/dropout/sub"
   attr {
     key: "T"
     value {
@@ -3946,7 +3997,7 @@ node {
 node {
   name: "dropout/dropout/mul"
   op: "Mul"
-  input: "dropout/dropout/div"
+  input: "dropout/dropout/truediv"
   input: "dropout/dropout/Floor"
   attr {
     key: "T"
@@ -5644,281 +5695,10 @@ node {
   }
 }
 node {
-  name: "sparse_softmax_cross_entropy_loss/Greater/y"
-  op: "Const"
-  input: "^sparse_softmax_cross_entropy_loss/assert_broadcastable/static_scalar_check_success"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "sparse_softmax_cross_entropy_loss/Greater"
-  op: "Greater"
-  input: "sparse_softmax_cross_entropy_loss/num_present"
-  input: "sparse_softmax_cross_entropy_loss/Greater/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "sparse_softmax_cross_entropy_loss/Equal/y"
-  op: "Const"
-  input: "^sparse_softmax_cross_entropy_loss/assert_broadcastable/static_scalar_check_success"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "sparse_softmax_cross_entropy_loss/Equal"
-  op: "Equal"
-  input: "sparse_softmax_cross_entropy_loss/num_present"
-  input: "sparse_softmax_cross_entropy_loss/Equal/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "sparse_softmax_cross_entropy_loss/ones_like/Shape"
-  op: "Const"
-  input: "^sparse_softmax_cross_entropy_loss/assert_broadcastable/static_scalar_check_success"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "sparse_softmax_cross_entropy_loss/ones_like/Const"
-  op: "Const"
-  input: "^sparse_softmax_cross_entropy_loss/assert_broadcastable/static_scalar_check_success"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 1.0
-      }
-    }
-  }
-}
-node {
-  name: "sparse_softmax_cross_entropy_loss/ones_like"
-  op: "Fill"
-  input: "sparse_softmax_cross_entropy_loss/ones_like/Shape"
-  input: "sparse_softmax_cross_entropy_loss/ones_like/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "sparse_softmax_cross_entropy_loss/Select"
-  op: "Select"
-  input: "sparse_softmax_cross_entropy_loss/Equal"
-  input: "sparse_softmax_cross_entropy_loss/ones_like"
-  input: "sparse_softmax_cross_entropy_loss/num_present"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "sparse_softmax_cross_entropy_loss/div"
-  op: "RealDiv"
-  input: "sparse_softmax_cross_entropy_loss/Sum_1"
-  input: "sparse_softmax_cross_entropy_loss/Select"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "sparse_softmax_cross_entropy_loss/zeros_like"
-  op: "Const"
-  input: "^sparse_softmax_cross_entropy_loss/assert_broadcastable/static_scalar_check_success"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
   name: "sparse_softmax_cross_entropy_loss/value"
-  op: "Select"
-  input: "sparse_softmax_cross_entropy_loss/Greater"
-  input: "sparse_softmax_cross_entropy_loss/div"
-  input: "sparse_softmax_cross_entropy_loss/zeros_like"
+  op: "DivNoNan"
+  input: "sparse_softmax_cross_entropy_loss/Sum_1"
+  input: "sparse_softmax_cross_entropy_loss/num_present"
   attr {
     key: "T"
     value {
@@ -6026,145 +5806,7 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/zeros_like"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Select"
-  op: "Select"
-  input: "sparse_softmax_cross_entropy_loss/Greater"
-  input: "gradients/Fill"
-  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/zeros_like"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Select_1"
-  op: "Select"
-  input: "sparse_softmax_cross_entropy_loss/Greater"
-  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/zeros_like"
-  input: "gradients/Fill"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/group_deps"
-  op: "NoOp"
-  input: "^gradients/sparse_softmax_cross_entropy_loss/value_grad/Select"
-  input: "^gradients/sparse_softmax_cross_entropy_loss/value_grad/Select_1"
-}
-node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/control_dependency"
-  op: "Identity"
-  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Select"
-  input: "^gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/sparse_softmax_cross_entropy_loss/value_grad/Select"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/control_dependency_1"
-  op: "Identity"
-  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Select_1"
-  input: "^gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/sparse_softmax_cross_entropy_loss/value_grad/Select_1"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Shape"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Shape"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -6197,7 +5839,7 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Shape_1"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Shape_1"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -6230,10 +5872,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/BroadcastGradientArgs"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/BroadcastGradientArgs"
   op: "BroadcastGradientArgs"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Shape"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Shape_1"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Shape"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Shape_1"
   attr {
     key: "T"
     value {
@@ -6259,10 +5901,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/RealDiv"
-  op: "RealDiv"
-  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/control_dependency"
-  input: "sparse_softmax_cross_entropy_loss/Select"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/div_no_nan"
+  op: "DivNoNan"
+  input: "gradients/Fill"
+  input: "sparse_softmax_cross_entropy_loss/num_present"
   attr {
     key: "T"
     value {
@@ -6280,10 +5922,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Sum"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Sum"
   op: "Sum"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/RealDiv"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/BroadcastGradientArgs"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/div_no_nan"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/BroadcastGradientArgs"
   attr {
     key: "T"
     value {
@@ -6313,10 +5955,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Reshape"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Reshape"
   op: "Reshape"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Sum"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Shape"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Sum"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Shape"
   attr {
     key: "T"
     value {
@@ -6340,7 +5982,7 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Neg"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg"
   op: "Neg"
   input: "sparse_softmax_cross_entropy_loss/Sum_1"
   attr {
@@ -6360,10 +6002,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/RealDiv_1"
-  op: "RealDiv"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Neg"
-  input: "sparse_softmax_cross_entropy_loss/Select"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/div_no_nan_1"
+  op: "DivNoNan"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Neg"
+  input: "sparse_softmax_cross_entropy_loss/num_present"
   attr {
     key: "T"
     value {
@@ -6381,10 +6023,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/RealDiv_2"
-  op: "RealDiv"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/RealDiv_1"
-  input: "sparse_softmax_cross_entropy_loss/Select"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/div_no_nan_2"
+  op: "DivNoNan"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/div_no_nan_1"
+  input: "sparse_softmax_cross_entropy_loss/num_present"
   attr {
     key: "T"
     value {
@@ -6402,10 +6044,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/mul"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/mul"
   op: "Mul"
-  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/control_dependency"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/RealDiv_2"
+  input: "gradients/Fill"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/div_no_nan_2"
   attr {
     key: "T"
     value {
@@ -6423,10 +6065,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Sum_1"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Sum_1"
   op: "Sum"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/mul"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/BroadcastGradientArgs:1"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/mul"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/BroadcastGradientArgs:1"
   attr {
     key: "T"
     value {
@@ -6456,10 +6098,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Reshape_1"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Reshape_1"
   op: "Reshape"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Sum_1"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Shape_1"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Sum_1"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Shape_1"
   attr {
     key: "T"
     value {
@@ -6483,16 +6125,16 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/tuple/group_deps"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/group_deps"
   op: "NoOp"
-  input: "^gradients/sparse_softmax_cross_entropy_loss/div_grad/Reshape"
-  input: "^gradients/sparse_softmax_cross_entropy_loss/div_grad/Reshape_1"
+  input: "^gradients/sparse_softmax_cross_entropy_loss/value_grad/Reshape"
+  input: "^gradients/sparse_softmax_cross_entropy_loss/value_grad/Reshape_1"
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/tuple/control_dependency"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/control_dependency"
   op: "Identity"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Reshape"
-  input: "^gradients/sparse_softmax_cross_entropy_loss/div_grad/tuple/group_deps"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Reshape"
+  input: "^gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/group_deps"
   attr {
     key: "T"
     value {
@@ -6503,7 +6145,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@gradients/sparse_softmax_cross_entropy_loss/div_grad/Reshape"
+        s: "loc:@gradients/sparse_softmax_cross_entropy_loss/value_grad/Reshape"
       }
     }
   }
@@ -6518,10 +6160,10 @@ node {
   }
 }
 node {
-  name: "gradients/sparse_softmax_cross_entropy_loss/div_grad/tuple/control_dependency_1"
+  name: "gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/control_dependency_1"
   op: "Identity"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/Reshape_1"
-  input: "^gradients/sparse_softmax_cross_entropy_loss/div_grad/tuple/group_deps"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/Reshape_1"
+  input: "^gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/group_deps"
   attr {
     key: "T"
     value {
@@ -6532,7 +6174,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@gradients/sparse_softmax_cross_entropy_loss/div_grad/Reshape_1"
+        s: "loc:@gradients/sparse_softmax_cross_entropy_loss/value_grad/Reshape_1"
       }
     }
   }
@@ -6582,7 +6224,7 @@ node {
 node {
   name: "gradients/sparse_softmax_cross_entropy_loss/Sum_1_grad/Reshape"
   op: "Reshape"
-  input: "gradients/sparse_softmax_cross_entropy_loss/div_grad/tuple/control_dependency"
+  input: "gradients/sparse_softmax_cross_entropy_loss/value_grad/tuple/control_dependency"
   input: "gradients/sparse_softmax_cross_entropy_loss/Sum_1_grad/Reshape/shape"
   attr {
     key: "T"
@@ -7572,7 +7214,7 @@ node {
   name: "gradients/dropout/dropout/mul_grad/Mul_1"
   op: "Mul"
   input: "gradients/dense_1/MatMul_grad/tuple/control_dependency"
-  input: "dropout/dropout/div"
+  input: "dropout/dropout/truediv"
   attr {
     key: "T"
     value {
@@ -7672,7 +7314,7 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/Shape"
+  name: "gradients/dropout/dropout/truediv_grad/Shape"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -7708,7 +7350,7 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/Shape_1"
+  name: "gradients/dropout/dropout/truediv_grad/Shape_1"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -7741,10 +7383,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/BroadcastGradientArgs"
+  name: "gradients/dropout/dropout/truediv_grad/BroadcastGradientArgs"
   op: "BroadcastGradientArgs"
-  input: "gradients/dropout/dropout/div_grad/Shape"
-  input: "gradients/dropout/dropout/div_grad/Shape_1"
+  input: "gradients/dropout/dropout/truediv_grad/Shape"
+  input: "gradients/dropout/dropout/truediv_grad/Shape_1"
   attr {
     key: "T"
     value {
@@ -7770,10 +7412,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/RealDiv"
+  name: "gradients/dropout/dropout/truediv_grad/RealDiv"
   op: "RealDiv"
   input: "gradients/dropout/dropout/mul_grad/tuple/control_dependency"
-  input: "dropout/dropout/keep_prob"
+  input: "dropout/dropout/sub"
   attr {
     key: "T"
     value {
@@ -7797,10 +7439,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/Sum"
+  name: "gradients/dropout/dropout/truediv_grad/Sum"
   op: "Sum"
-  input: "gradients/dropout/dropout/div_grad/RealDiv"
-  input: "gradients/dropout/dropout/div_grad/BroadcastGradientArgs"
+  input: "gradients/dropout/dropout/truediv_grad/RealDiv"
+  input: "gradients/dropout/dropout/truediv_grad/BroadcastGradientArgs"
   attr {
     key: "T"
     value {
@@ -7836,10 +7478,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/Reshape"
+  name: "gradients/dropout/dropout/truediv_grad/Reshape"
   op: "Reshape"
-  input: "gradients/dropout/dropout/div_grad/Sum"
-  input: "gradients/dropout/dropout/div_grad/Shape"
+  input: "gradients/dropout/dropout/truediv_grad/Sum"
+  input: "gradients/dropout/dropout/truediv_grad/Shape"
   attr {
     key: "T"
     value {
@@ -7869,7 +7511,7 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/Neg"
+  name: "gradients/dropout/dropout/truediv_grad/Neg"
   op: "Neg"
   input: "dense/Relu"
   attr {
@@ -7895,10 +7537,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/RealDiv_1"
+  name: "gradients/dropout/dropout/truediv_grad/RealDiv_1"
   op: "RealDiv"
-  input: "gradients/dropout/dropout/div_grad/Neg"
-  input: "dropout/dropout/keep_prob"
+  input: "gradients/dropout/dropout/truediv_grad/Neg"
+  input: "dropout/dropout/sub"
   attr {
     key: "T"
     value {
@@ -7922,10 +7564,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/RealDiv_2"
+  name: "gradients/dropout/dropout/truediv_grad/RealDiv_2"
   op: "RealDiv"
-  input: "gradients/dropout/dropout/div_grad/RealDiv_1"
-  input: "dropout/dropout/keep_prob"
+  input: "gradients/dropout/dropout/truediv_grad/RealDiv_1"
+  input: "dropout/dropout/sub"
   attr {
     key: "T"
     value {
@@ -7949,10 +7591,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/mul"
+  name: "gradients/dropout/dropout/truediv_grad/mul"
   op: "Mul"
   input: "gradients/dropout/dropout/mul_grad/tuple/control_dependency"
-  input: "gradients/dropout/dropout/div_grad/RealDiv_2"
+  input: "gradients/dropout/dropout/truediv_grad/RealDiv_2"
   attr {
     key: "T"
     value {
@@ -7976,10 +7618,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/Sum_1"
+  name: "gradients/dropout/dropout/truediv_grad/Sum_1"
   op: "Sum"
-  input: "gradients/dropout/dropout/div_grad/mul"
-  input: "gradients/dropout/dropout/div_grad/BroadcastGradientArgs:1"
+  input: "gradients/dropout/dropout/truediv_grad/mul"
+  input: "gradients/dropout/dropout/truediv_grad/BroadcastGradientArgs:1"
   attr {
     key: "T"
     value {
@@ -8009,10 +7651,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/Reshape_1"
+  name: "gradients/dropout/dropout/truediv_grad/Reshape_1"
   op: "Reshape"
-  input: "gradients/dropout/dropout/div_grad/Sum_1"
-  input: "gradients/dropout/dropout/div_grad/Shape_1"
+  input: "gradients/dropout/dropout/truediv_grad/Sum_1"
+  input: "gradients/dropout/dropout/truediv_grad/Shape_1"
   attr {
     key: "T"
     value {
@@ -8036,16 +7678,16 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/tuple/group_deps"
+  name: "gradients/dropout/dropout/truediv_grad/tuple/group_deps"
   op: "NoOp"
-  input: "^gradients/dropout/dropout/div_grad/Reshape"
-  input: "^gradients/dropout/dropout/div_grad/Reshape_1"
+  input: "^gradients/dropout/dropout/truediv_grad/Reshape"
+  input: "^gradients/dropout/dropout/truediv_grad/Reshape_1"
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/tuple/control_dependency"
+  name: "gradients/dropout/dropout/truediv_grad/tuple/control_dependency"
   op: "Identity"
-  input: "gradients/dropout/dropout/div_grad/Reshape"
-  input: "^gradients/dropout/dropout/div_grad/tuple/group_deps"
+  input: "gradients/dropout/dropout/truediv_grad/Reshape"
+  input: "^gradients/dropout/dropout/truediv_grad/tuple/group_deps"
   attr {
     key: "T"
     value {
@@ -8056,7 +7698,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@gradients/dropout/dropout/div_grad/Reshape"
+        s: "loc:@gradients/dropout/dropout/truediv_grad/Reshape"
       }
     }
   }
@@ -8077,10 +7719,10 @@ node {
   }
 }
 node {
-  name: "gradients/dropout/dropout/div_grad/tuple/control_dependency_1"
+  name: "gradients/dropout/dropout/truediv_grad/tuple/control_dependency_1"
   op: "Identity"
-  input: "gradients/dropout/dropout/div_grad/Reshape_1"
-  input: "^gradients/dropout/dropout/div_grad/tuple/group_deps"
+  input: "gradients/dropout/dropout/truediv_grad/Reshape_1"
+  input: "^gradients/dropout/dropout/truediv_grad/tuple/group_deps"
   attr {
     key: "T"
     value {
@@ -8091,7 +7733,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@gradients/dropout/dropout/div_grad/Reshape_1"
+        s: "loc:@gradients/dropout/dropout/truediv_grad/Reshape_1"
       }
     }
   }
@@ -8108,7 +7750,7 @@ node {
 node {
   name: "gradients/dense/Relu_grad/ReluGrad"
   op: "ReluGrad"
-  input: "gradients/dropout/dropout/div_grad/tuple/control_dependency"
+  input: "gradients/dropout/dropout/truediv_grad/tuple/control_dependency"
   input: "dense/Relu"
   attr {
     key: "T"
@@ -12851,6 +12493,107 @@ node {
   }
 }
 node {
+  name: "report_uninitialized_resources_1/Const"
+  op: "Const"
+  device: "/device:CPU:0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+          dim {
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "concat_1/axis"
+  op: "Const"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "concat_1"
+  op: "ConcatV2"
+  input: "report_uninitialized_variables_1/boolean_mask/GatherV2"
+  input: "report_uninitialized_resources_1/Const"
+  input: "concat_1/axis"
+  attr {
+    key: "N"
+    value {
+      i: 2
+    }
+  }
+  attr {
+    key: "T"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "Tidx"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+        }
+      }
+    }
+  }
+}
+node {
   name: "init_2"
   op: "NoOp"
 }
@@ -12891,7 +12634,7 @@ node {
   }
 }
 node {
-  name: "save/Const"
+  name: "save/filename/input"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -12921,6 +12664,60 @@ node {
   }
 }
 node {
+  name: "save/filename"
+  op: "PlaceholderWithDefault"
+  input: "save/filename/input"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+      }
+    }
+  }
+}
+node {
+  name: "save/Const"
+  op: "PlaceholderWithDefault"
+  input: "save/filename"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+      }
+    }
+  }
+}
+node {
   name: "save/StringJoin/inputs_1"
   op: "Const"
   attr {
@@ -12945,7 +12742,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
         }
-        string_val: "_temp_648e7f6745a74132a907575e5548c68b/part"
+        string_val: "_temp_4a8ee82ba337403fb9a2346eba72d3e6/part"
       }
     }
   }
