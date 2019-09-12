@@ -1,3 +1,4 @@
-# test.py
+from PIL import Image
 
-import Table_Classifier as table
+with open('/Users/kouroshsimpkins/OneDrive - Harris Federation/Programming/NeuralNetworks/CompSci NEA/Table_Test_Images/test_1.jpg', Image()):
+    print("test")

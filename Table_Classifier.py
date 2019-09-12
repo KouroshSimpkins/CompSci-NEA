@@ -1,5 +1,3 @@
-'''
-
 import os
 import cv2
 import imutils
@@ -94,7 +92,7 @@ if __name__ == "__main__":
     pre_file = os.path.join("data", "pre.jpg")
     out_file = os.path.join("data", "out.jpg")
 
-    img = cv2.imread(os.path.join(in_file))
+    img = cv2.imread(os.path.join('Table_Test_Images/test_1.jpg'))
 
     pre_processed = pre_process_image(img, pre_file)
     text_boxes = find_text_boxes(pre_processed)
@@ -117,6 +115,7 @@ if __name__ == "__main__":
 
 from PIL import Image
 
+
 with Image(page) as page_image:
     page_image.alpha_channel = False
     img_buffer = np.asarray(bytearray(page_image.make_blob()), dtype=np.uint8)
@@ -130,3 +129,5 @@ with Image(page) as page_image:
         [x, y, w, h] = cv2.boundingRect(contour)
         if (w > thresh1 and h > thresh2):
             margin.append([x, y, x + w, y + h])
+
+'''
