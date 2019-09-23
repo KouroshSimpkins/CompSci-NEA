@@ -14,6 +14,8 @@ def order_points(pts):
 
     return rect
 
+# youtube.com/ChrixNoob - subscribe to chrix nooooooow :D
+
 
 def four_point_transform(image, pts):
     rect = order_points(pts)

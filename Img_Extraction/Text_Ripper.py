@@ -1,7 +1,4 @@
-try:
-    from PIL import Image
-finally:
-    import Image
+from PIL import Image
 import PIL.Image
 from pytesseract import image_to_string
 import pytesseract
@@ -15,6 +12,7 @@ cv2.waitKey(0)
 
 pytesseract.pytesseract.tesseract_cmd = 'image'
 TESSDATA_PREFIX = 'image'
-output = pytesseract.image_to_string
-(PIL.Image.open('OutputImage.PNG').convert("RGB"), lang='eng')
+output = pytesseract.image_to_string(PIL.Image.open(
+                                    'OutputImage.PNG').convert(
+                                    "RGB"), lang='eng')
 print(output)
