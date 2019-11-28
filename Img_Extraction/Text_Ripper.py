@@ -1,9 +1,12 @@
-from PIL import Image
-import PIL.Image
+try:
+    from PIL import Image
+except ImportError:
+    import Image
 from pytesseract import image_to_string
 import pytesseract
 import cv2
 import wand
+import Get_Perspective_Transform
 
 imS = cv2.resize(warped, (1350, 1150))
 cv2.imshow("output", imS)

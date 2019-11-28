@@ -77,6 +77,8 @@ def cnn_model_fn(features, labels, mode):
         mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 
 # Loading the training and evaluation data
+
+
 ((train_data, train_labels),
  (eval_data, eval_labels)) = tf.keras.datasets.mnist.load_data()
 

@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2837124F23393EE500B859D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837124E23393EE500B859D4 /* AppDelegate.swift */; };
-		2837125123393EE500B859D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837125023393EE500B859D4 /* SceneDelegate.swift */; };
-		2837125323393EE500B859D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837125223393EE500B859D4 /* ContentView.swift */; };
 		2837125523393EF000B859D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2837125423393EF000B859D4 /* Assets.xcassets */; };
 		2837125823393EF000B859D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2837125723393EF000B859D4 /* Preview Assets.xcassets */; };
 		2837125B23393EF000B859D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2837125923393EF000B859D4 /* LaunchScreen.storyboard */; };
 		2837126623393EF100B859D4 /* CompSciNEATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837126523393EF100B859D4 /* CompSciNEATests.swift */; };
 		28A419E423394AD700E7DA5E /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A419E323394AD700E7DA5E /* CameraController.swift */; };
+		28A419E623395F0100E7DA5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A419E523395F0100E7DA5E /* ViewController.swift */; };
+		28EEC74D233A08F200A64DE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EEC74A233A08F100A64DE7 /* AppDelegate.swift */; };
+		28EEC74E233A08F200A64DE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EEC74B233A08F200A64DE7 /* ContentView.swift */; };
+		28EEC74F233A08F200A64DE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EEC74C233A08F200A64DE7 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,9 +30,6 @@
 
 /* Begin PBXFileReference section */
 		2837124B23393EE500B859D4 /* CompSciNEA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CompSciNEA.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2837124E23393EE500B859D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2837125023393EE500B859D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2837125223393EE500B859D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2837125423393EF000B859D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2837125723393EF000B859D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2837125A23393EF000B859D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +38,10 @@
 		2837126523393EF100B859D4 /* CompSciNEATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompSciNEATests.swift; sourceTree = "<group>"; };
 		2837126723393EF100B859D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28A419E323394AD700E7DA5E /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		28A419E523395F0100E7DA5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		28EEC74A233A08F100A64DE7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		28EEC74B233A08F200A64DE7 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		28EEC74C233A08F200A64DE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +83,11 @@
 		2837124D23393EE500B859D4 /* CompSciNEA */ = {
 			isa = PBXGroup;
 			children = (
-				2837124E23393EE500B859D4 /* AppDelegate.swift */,
-				2837125023393EE500B859D4 /* SceneDelegate.swift */,
-				2837125223393EE500B859D4 /* ContentView.swift */,
+				28A419E523395F0100E7DA5E /* ViewController.swift */,
 				28A419E323394AD700E7DA5E /* CameraController.swift */,
+				28EEC74A233A08F100A64DE7 /* AppDelegate.swift */,
+				28EEC74B233A08F200A64DE7 /* ContentView.swift */,
+				28EEC74C233A08F200A64DE7 /* SceneDelegate.swift */,
 				2837125423393EF000B859D4 /* Assets.xcassets */,
 				2837125923393EF000B859D4 /* LaunchScreen.storyboard */,
 				2837125C23393EF000B859D4 /* Info.plist */,
@@ -211,10 +214,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2837124F23393EE500B859D4 /* AppDelegate.swift in Sources */,
-				2837125123393EE500B859D4 /* SceneDelegate.swift in Sources */,
+				28EEC74F233A08F200A64DE7 /* SceneDelegate.swift in Sources */,
+				28EEC74D233A08F200A64DE7 /* AppDelegate.swift in Sources */,
+				28A419E623395F0100E7DA5E /* ViewController.swift in Sources */,
+				28EEC74E233A08F200A64DE7 /* ContentView.swift in Sources */,
 				28A419E423394AD700E7DA5E /* CameraController.swift in Sources */,
-				2837125323393EE500B859D4 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +375,7 @@
 				DEVELOPMENT_TEAM = 75BMDS26U3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CompSciNEA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,6 +396,7 @@
 				DEVELOPMENT_TEAM = 75BMDS26U3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CompSciNEA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
