@@ -9,11 +9,9 @@ To use this program, currently you need to point the command to the location of 
 The final goal of this project is to create a document scanner that runs over a network, by pointing a browser to a certain ip address on the network. It's possible for me to create a github pages website that could provide the data and frontend for my NEA, however it adds complexity that I don't need to consider at this point in time.
 
 To run the program, you will need to run the python file from the terminal with:
-python [Img_Extraction/Scan.py] --file[Path to your image]
+python '[Img_Extraction/Scan.py] --file[Path to your image]'
 The above code should get the program to run on any Unix operating system.
 
 As of today (22/12/19) I managed to create a working image scanner, and am now working on building a django site which uses the application as part of the site. I aim to get this done by new years day, but we'll see.
-
-*italics*
 
 --Kourosh
