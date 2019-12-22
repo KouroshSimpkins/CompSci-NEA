@@ -1,4 +1,5 @@
 # CompSci-NEA
+
 Computer Science Non Exam Assessment for Y12-Y13
 
 As part of the A-level Computer Science syllabus, I must complete a Non Exam Assessment. This entails completing an individual project, that needs to be complex enough to be classed as A-level, and also solve a 'real world problem' (whatever that is [I'm kidding I know]).
@@ -10,5 +11,7 @@ The final goal of this project is to create a document scanner that runs over a 
 To run the program, you will need to run the python file from the terminal with:
 python [Img_Extraction/Scan.py] --file[Path to your image]
 The above code should get the program to run on any Unix operating system.
+
+As of today (22/12/19) I managed to create a working image scanner, and am now working on building a django site which uses the application as part of the site. I aim to get this done by new years day, but we'll see.
 
 --Kourosh
