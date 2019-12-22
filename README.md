@@ -14,4 +14,6 @@ The above code should get the program to run on any Unix operating system.
 
 As of today (22/12/19) I managed to create a working image scanner, and am now working on building a django site which uses the application as part of the site. I aim to get this done by new years day, but we'll see.
 
+*italics*
+
 --Kourosh
