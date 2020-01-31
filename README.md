@@ -12,6 +12,6 @@ To run the program, you will need to run the python file from the terminal with:
 python '[Img_Extraction/Scan.py] --file[Path to your image]'
 The above code should get the program to run on any Unix operating system.
 
-As of today (22/12/19) I managed to create a working image scanner, and am now working on building a django site which uses the application as part of the site. I aim to get this done by new years day, but we'll see.
+Currently I have two working Django applications built into a website, one to handle users and one to handle the addition of a file to the server where the website is running. Still trying to figure out how to implement the final project into the Django website, and not really getting anywhere at the moment (15/1/2020), currently considering adding it as a completely new app and working from there, not too sure how it'll work though. 
 
 --Kourosh
