@@ -234,3 +234,6 @@ typings/
 .dynamodb/
 
 .vscode/
+
+# Mobile virtual environment
+Django_Env/
