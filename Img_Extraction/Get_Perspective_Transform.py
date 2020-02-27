@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 
-def order_points(pts):
+def ordered_points(pts):
     # initialzie a list of coordinates that will be ordered
     # such that the first entry in the list is the top-left,
     # the second entry is the top-right, the third is the
@@ -27,7 +27,7 @@ def order_points(pts):
 
 
 def four_point_transform(image, pts):
-    rect = order_points(pts)
+    rect = ordered_points(pts)
     (tl, tr, br, bl) = rect
 
     widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
