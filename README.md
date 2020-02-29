@@ -18,6 +18,6 @@ The above code should get the program to run on any Unix operating system.
 
 ## Update 27/2/2020
 
-I'm moving away from Django and moving towards flask as my go to for the website. I do love using Django, however for this project it is doing far too much that I should be building myself. Flask is a lot more explicit in making me do the work, rather than letting Django handle everything. Which is great. **My deadline is the 28th Feburary. Crap.**
+I'm moving away from Django and moving towards flask as my go to for the website. I do love using Django, however for this project it is doing far too much that I should be building myself. Flask is a lot more explicit in making me do the work, rather than letting Django handle everything. Which is great.
 
 --Kourosh
